@@ -13,7 +13,7 @@ k3sup install \
   --host $HOST \
   --user $USER \
   --ssh-key $KEY \
-  --k3s-extra-args '--disable traefik --disable flannel --disable servicelb' \
+  --k3s-extra-args '--disable traefik --disable servicelb --flannel-backend=none --disable-network-policy --cluster-cidr=10.42.0.0/16 --service-cidr=10.43.0.0/16' \
   --merge \
   --local-path $HOME/.kube/config \
   --context home-ops-k3s \
@@ -24,3 +24,4 @@ if [ $? -eq 0 ]; then
 else
   echo -e "${RED}K3s installation failed.${NC}"
 fi
+
