@@ -24,4 +24,3 @@ if [ $? -eq 0 ]; then
 else
   echo -e "${RED}K3s installation failed.${NC}"
 fi
-
