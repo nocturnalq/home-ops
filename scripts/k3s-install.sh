@@ -13,7 +13,7 @@ k3sup install \
   --host $HOST \
   --user $USER \
   --ssh-key $KEY \
-  --k3s-extra-args '--disable traefik --disable servicelb --flannel-backend=none --disable-network-policy --cluster-cidr=10.42.0.0/16 --service-cidr=10.43.0.0/16' \
+  --k3s-extra-args '--flannel-backend=none --disable-network-policy --cluster-cidr=10.42.0.0/16 --service-cidr=10.43.0.0/16 --disable-kube-proxy=true --cluster-init=true --write-kubeconfig-mode=644' \
   --merge \
   --local-path $HOME/.kube/config \
   --context home-ops-k3s \
