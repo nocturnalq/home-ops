@@ -2,13 +2,16 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: podinfo
+  name: development
   namespace: flux-system
 spec:
-  interval: 10m0s
-  path: ./apps/development/podinfo/app
-  prune: true
+  interval: 3m0s
+  path: ./apps/development
+  prune: false
+  retryInterval: 2m0s
   sourceRef:
     kind: GitRepository
     name: flux-system
   targetNamespace: development
+  timeout: 1m0s
+  wait: true
