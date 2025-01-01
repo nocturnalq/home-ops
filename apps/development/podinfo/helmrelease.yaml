@@ -1,0 +1,23 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: podinfo
+  namespace: flux-system
+spec:
+  chart:
+    spec:
+      chart: podinfo
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        name: ""
+  interval: 1m0s
+  values:
+    ingress:
+      className: traefik
+      enabled: true
+      hosts:
+      - host: podinfo-dev.home
+        paths:
+        - path: /
+          pathType: Prefix
