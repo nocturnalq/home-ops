@@ -1,8 +1,0 @@
-ingress:
-  enabled: true
-  className: "traefik"
-  hosts:
-    - host: "podinfo-dev.home"
-      paths:
-        - path: "/"
-          pathType: Prefix
