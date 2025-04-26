@@ -80,4 +80,9 @@ EOF
 helm install flux-operator oci://ghcr.io/controlplaneio-fluxcd/charts/flux-operator \
   --namespace flux-system \
   --create-namespace
+
+flux create secret git flux-system \
+  --url=https://github.com/nocturnalq/home-ops.git \
+  --username=nocturnalq \
+  --password=$GITHUB_TOKEN
 ```

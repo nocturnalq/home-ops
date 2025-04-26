@@ -8,6 +8,6 @@ metadata:
   annotations:
     kustomize.toolkit.fluxcd.io/ssa: "Merge"
 data:
-  ENVIRONMENT: "staging"
+  ENVIRONMENT: "home"
   GIT_BRANCH: "main"
   CLUSTER_NAME: "home"
