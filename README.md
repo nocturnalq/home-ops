@@ -1,18 +1,11 @@
 # Home Ops Cluster
 
-## Install k3s and Cilium
+## Install k3s
 
 Installing k3s using `k3sup`:
 
 ```
-k3sup install --host 192.168.1.9 --ssh-port 1322 --user nocturnalq --ssh-key ~/.ssh/nocturnalq-server0 --k3s-channel latest --context home-server0 --k3s-extra-args '--flannel-backend=none --disable-kube-proxy=true disable-network-policy=true --cluster-init --disable metrics-server --cluster-cidr=10.42.0.0/16 --service-cidr=10.43.0.0/16'
-
-Install Cilium:
-
-helm install cilium cilium/cilium --version 1.17.3 --namespace kube-system --set operator.replicas=1 --set kubeProxyReplacement=true --set nodePort.enabled=true
-
-kubectl get pods --all-namespaces -o custom-columns=NAMESPACE:.metadata.namespace,NAME:.metadata.name,HOSTNETWORK:.spec.hostNetwork --no-headers=true | grep '<none>' | awk '{print "-n "$1" "$2}' | xargs -L 1 -r kubectl delete pod
-
+k3sup install --host 192.168.1.9 --ssh-port 1322 --user nocturnalq --ssh-key ~/.ssh/nocturnalq-server0 --k3s-channel latest --context home-server0
 ```
 
 ## Create nginx deployment for testing
@@ -52,7 +45,6 @@ spec:
   - protocol: TCP
     port: 80
     targetPort: 80
-  type: LoadBalancer
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -85,4 +77,6 @@ flux create secret git flux-system \
   --url=https://github.com/nocturnalq/home-ops.git \
   --username=nocturnalq \
   --password=$GITHUB_TOKEN
+
+kubectl apply -n flux-system -f clusters/home/bootstrap.yaml
 ```
