@@ -1,0 +1,10 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: OCIRepository
+metadata:
+  name: kro
+  namespace: kube-system
+spec:
+  interval: 10m0s
+  url: oci://ghcr.io/kro-run/kro/kro
+  ref:
+    tag: "0.2.3"
