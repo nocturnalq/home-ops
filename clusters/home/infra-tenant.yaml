@@ -1,0 +1,42 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: flux-infra-tenant
+  namespace: flux-system
+spec:
+  serviceAccountName: kustomize-controller
+  interval: 12h
+  retryInterval: 3m
+  path: ./tenants/infra
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  postBuild:
+    substituteFrom:
+      - kind: ConfigMap
+        name: flux-runtime-info
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-gpg
+  commonMetadata:
+    labels:
+      toolkit.fluxcd.io/tenant: infra
+  patches:
+    - patch: |-
+        apiVersion: kustomize.toolkit.fluxcd.io/v1
+        kind: Kustomization
+        metadata:
+          name: not-used
+        spec:
+          commonMetadata:
+            labels:
+              toolkit.fluxcd.io/tenant: infra    
+          postBuild:
+            substituteFrom:
+              - kind: ConfigMap
+                name: flux-runtime-info
+      target:
+        group: kustomize.toolkit.fluxcd.io
+        kind: Kustomization

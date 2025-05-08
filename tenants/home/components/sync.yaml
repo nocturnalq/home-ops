@@ -1,0 +1,38 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: flux-home
+spec:
+  interval: 1m
+  ref:
+    branch: ${GIT_BRANCH}
+  secretRef:
+    name: flux-home
+  url: https://gl.1440.space/pe/controlplane/flux/gitlab-runners.git
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: flux-home
+spec:
+  serviceAccountName: flux-home
+  interval: 12h
+  retryInterval: 3m
+  path: ./components
+  prune: false
+  sourceRef:
+    kind: GitRepository
+    name: flux-home
+  timeout: 15m
+  wait: true
+  patches:
+    - patch: |
+        - op: add
+          path: /spec/serviceAccountName
+          value: flux-home
+      target:
+        kind: "(HelmRelease|Kustomization)"
+  postBuild:
+    substituteFrom:
+      - kind: ConfigMap
+        name: flux-runtime-info
