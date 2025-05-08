@@ -1,0 +1,10 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: OCIRepository
+metadata:
+  name: cilium
+  namespace: kube-system
+spec:
+  interval: 10h
+  url: https://helm.cilium.io/
+  ref:
+    tag: "1.17.3"

@@ -1,0 +1,34 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: cilium
+  namespace: kube-system
+spec:
+  interval: 10m
+  chartRef:
+    kind: OCIRepository
+    name: cilium
+    namespace: kube-system
+  timeout: 10m
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+  driftDetection:
+    mode: enabled
+    ignore:
+      - paths: ["/spec/replicas"]
+  values:
+    rollOutCiliumPods: true
+    ipam:
+      operator:
+        clusterPoolIPv4PodCIDRList: "10.42.0.0/16"
+        rollOutPods: true
+    operator:
+      replicas: 1
+    kubeProxyReplacement: true
+    ipam.mode: kubernetes
+    k8sServiceHost: 192.168.1.9
+    k8sServicePort: 6443
