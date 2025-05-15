@@ -5,7 +5,6 @@ resources:
   - rbac.yaml
   - storage.yaml
   - source.yaml
-  - sourceauth.yaml
   - crds.yaml
   - databases.yaml
   - control-plane.yaml
