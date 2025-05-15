@@ -19,10 +19,10 @@ spec:
     substituteFrom:
       - kind: ConfigMap
         name: flux-runtime-info
-  decryption:
-    provider: sops
-    secretRef:
-      name: sops-gpg
+  # decryption:
+  #   provider: sops
+  #   secretRef:
+  #     name: sops-gpg
   commonMetadata:
     labels:
       toolkit.fluxcd.io/tenant: home

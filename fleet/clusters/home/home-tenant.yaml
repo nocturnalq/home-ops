@@ -1,30 +1,25 @@
----
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: flux-home-apps
+  name: flux-home-tenant
   namespace: flux-system
 spec:
-  serviceAccountName: flux-home
-  dependsOn:
-  - name: flux-home-infra
-  interval: 10m
-  retryInterval: 2m
-  timeout: 2m
+  serviceAccountName: kustomize-controller
+  interval: 12h
+  retryInterval: 3m
+  path: ./fleet/tenants/home
   prune: true
-  wait: true
   sourceRef:
     kind: GitRepository
-    name: flux-home
-  path: ./components/apps
+    name: flux-system
   postBuild:
     substituteFrom:
       - kind: ConfigMap
         name: flux-runtime-info
-  decryption:
-    provider: sops
-    secretRef:
-      name: sops-gpg
+  # decryption:
+  #   provider: sops
+  #   secretRef:
+  #     name: sops-gpg
   commonMetadata:
     labels:
       toolkit.fluxcd.io/tenant: home
