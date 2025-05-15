@@ -27,5 +27,5 @@ spec:
     kind: GitRepository
     url: "https://github.com/nocturnalq/home-ops"
     ref: "refs/heads/main"
-    path: "clusters/home"
+    path: "fleet/clusters/home"
     pullSecret: "flux-system"
