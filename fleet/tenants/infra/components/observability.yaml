@@ -1,0 +1,44 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: observability-controllers
+spec:
+  serviceAccountName: flux-infra
+  dependsOn:
+    - name: ingress-controllers
+  interval: 1m
+  retryInterval: 2m
+  timeout: 10m
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-infra
+  path: components/observability/controllers/${ENVIRONMENT}
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-gpg
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: observability-configs
+spec:
+  serviceAccountName: flux-infra
+  dependsOn:
+    - name: observability-controllers
+  interval: 1m
+  retryInterval: 2m
+  timeout: 5m
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-infra
+  path: components/observability/configs/${ENVIRONMENT}
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-gpg

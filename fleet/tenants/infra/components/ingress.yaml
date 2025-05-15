@@ -1,0 +1,40 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: ingress-controllers
+spec:
+  serviceAccountName: flux-infra
+  dependsOn:
+    - name: crds
+  interval: 1h
+  retryInterval: 2m
+  timeout: 10m
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-infra
+  path: components/ingress/controllers/${ENVIRONMENT}
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: ingress-configs
+spec:
+  serviceAccountName: flux-infra
+  dependsOn:
+    - name: ingress-controllers
+  interval: 1h
+  retryInterval: 2m
+  timeout: 5m
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-infra
+  path: components/ingress/configs/${ENVIRONMENT}
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-gpg

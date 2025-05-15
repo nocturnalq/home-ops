@@ -1,0 +1,11 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: flux-infra
+spec:
+  interval: 1m
+  ref:
+    branch: ${GIT_BRANCH}
+  secretRef:
+    name: devteam-infra
+  url: https://gl.1440.space/pe/controlplane/flux/infra.git
