@@ -15,7 +15,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-infra
-  path: components/observability/controllers/${ENVIRONMENT}
+  path: infra/components/observability/controllers/${ENVIRONMENT}
   decryption:
     provider: sops
     secretRef:
@@ -37,7 +37,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-infra
-  path: components/observability/configs/${ENVIRONMENT}
+  path: infra/components/observability/configs/${ENVIRONMENT}
   decryption:
     provider: sops
     secretRef:

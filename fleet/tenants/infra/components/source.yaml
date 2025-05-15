@@ -7,5 +7,5 @@ spec:
   ref:
     branch: ${GIT_BRANCH}
   secretRef:
-    name: devteam-infra
-  url: https://gl.1440.space/pe/controlplane/flux/infra.git
+    name: flux-system
+  url: https://github.com/nocturnalq/home-ops.git
