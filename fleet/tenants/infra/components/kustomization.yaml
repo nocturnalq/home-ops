@@ -1,0 +1,19 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: flux-system
+resources:
+  - rbac.yaml
+  - storage.yaml
+  - source.yaml
+  - sourceauth.yaml
+  - crds.yaml
+  - databases.yaml
+  - control-plane.yaml
+  - ingress.yaml
+  - observability.yaml
+  - brokers.yaml
+  - security.yaml
+  - notifications
+labels:
+  - pairs:
+      toolkit.fluxcd.io/tenant: infra
