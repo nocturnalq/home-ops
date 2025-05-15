@@ -25,7 +25,7 @@ spec:
     domain: "cluster.local"
   sync:
     kind: GitRepository
-    url: "https://github.com/nocturnalq/home-ops"
+    url: "https://github.com/nocturnalq/home-ops.git"
     ref: "refs/heads/main"
     path: "fleet/clusters/home"
     pullSecret: "flux-system"
