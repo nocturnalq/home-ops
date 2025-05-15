@@ -9,7 +9,6 @@ spec:
     kind: HelmChart
     name: cilium
     namespace: kube-system
-    version: 1.17.3
   timeout: 10m
   install:
     remediation:
