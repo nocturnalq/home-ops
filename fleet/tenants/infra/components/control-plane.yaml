@@ -13,7 +13,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-infra
-  path: components/control-plane/controllers/${ENVIRONMENT}
+  path: infra/components/control-plane/controllers/${ENVIRONMENT}
 
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
@@ -32,4 +32,4 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-infra
-  path: components/control-plane/configs/${ENVIRONMENT}
+  path: infra/components/control-plane/configs/${ENVIRONMENT}

@@ -13,7 +13,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-infra
-  path: components/security/controllers/${ENVIRONMENT}
+  path: infra/components/security/controllers/${ENVIRONMENT}
 
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
@@ -32,4 +32,4 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-infra
-  path: components/security/configs/${ENVIRONMENT}
+  path: infra/components/security/configs/${ENVIRONMENT}

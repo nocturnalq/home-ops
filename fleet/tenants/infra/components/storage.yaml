@@ -13,4 +13,4 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-infra
-  path: components/storage/controllers/${ENVIRONMENT}
+  path: infra/components/storage/controllers/${ENVIRONMENT}

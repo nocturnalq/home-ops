@@ -13,7 +13,6 @@ resources:
   - observability.yaml
   - brokers.yaml
   - security.yaml
-  - notifications
 labels:
   - pairs:
       toolkit.fluxcd.io/tenant: infra

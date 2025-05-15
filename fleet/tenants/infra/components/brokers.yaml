@@ -13,4 +13,4 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-infra
-  path: components/brokers/controllers/${ENVIRONMENT}
+  path: infra/components/brokers/controllers/${ENVIRONMENT}

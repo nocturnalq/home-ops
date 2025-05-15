@@ -15,7 +15,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-infra
-  path: components/ingress/controllers/${ENVIRONMENT}
+  path: infra/components/ingress/controllers/${ENVIRONMENT}
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -33,7 +33,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-infra
-  path: components/ingress/configs/${ENVIRONMENT}
+  path: infra/components/ingress/configs/${ENVIRONMENT}
   decryption:
     provider: sops
     secretRef:
