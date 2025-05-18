@@ -3,7 +3,6 @@ kind: Kustomization
 namespace: flux-system
 resources:
   - rbac.yaml
-  - storage.yaml
   - source.yaml
   - crds.yaml
   - databases.yaml
