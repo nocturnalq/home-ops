@@ -12,6 +12,7 @@ resources:
   - observability.yaml
   - brokers.yaml
   - security.yaml
+  - definitions.yaml
 labels:
   - pairs:
       toolkit.fluxcd.io/tenant: infra
