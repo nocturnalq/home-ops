@@ -1,0 +1,10 @@
+apiVersion: v2
+name: postgres
+description: Managed PostgreSQL service
+type: application
+
+# Helm chart version
+version: 0.1.0
+
+# Default postgres image version
+appVersion: "16.2"
