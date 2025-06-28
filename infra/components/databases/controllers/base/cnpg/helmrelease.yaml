@@ -12,7 +12,7 @@ spec:
         kind: HelmRepository
         name: cnpg
         namespace: ops
-      version: 0.23.2
+      version: 0.24.0
   timeout: 10m
   install:
     remediation:
