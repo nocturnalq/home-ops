@@ -1,0 +1,56 @@
+apiVersion: rabbitmq.com/v1beta1
+kind: RabbitmqCluster
+metadata:
+  name: {{ .Release.Name }}-rmq
+  labels:
+    app.kubernetes.io/instance: {{ .Release.Name }}-rmq
+    app.kubernetes.io/managed-by: {{ .Release.Service }}-rmq
+spec:
+  replicas: {{ .Values.replicas }}
+  {{- if .Values.external }}
+  service:
+    type: LoadBalancer
+  {{- end }}
+  {{- if .Values.resources }}
+  resources: {{- include "cozy-lib.resources.sanitize" (list .Values.resources $) | nindent 4 }}
+  {{- else if ne .Values.resourcesPreset "none" }}
+  resources: {{- include "cozy-lib.resources.preset" (list .Values.resourcesPreset $) | nindent 4 }}
+  {{- end }}
+
+  persistence:
+    {{- with .Values.storageClass }}
+    storageClassName: {{ . }}
+    {{- end }}
+    storage: {{ .Values.size }}
+---
+apiVersion: operator.victoriametrics.com/v1beta1
+kind: VMServiceScrape
+metadata:
+  name: {{ .Release.Name }}-rmq
+  labels:
+    app.kubernetes.io/instance: {{ .Release.Name }}-rmq
+    app.kubernetes.io/managed-by: {{ .Release.Service }}-rmq
+spec:
+  jobLabel: jobLabel
+  namespaceSelector:
+    matchNames:
+    - {{ .Release.Namespace }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: {{ .Release.Name }}-rmq
+      app.kubernetes.io/managed-by: {{ .Release.Service }}-rmq
+  endpoints:
+  - port: prometheus
+    scheme: http
+    interval: 15s
+    scrapeTimeout: 14s
+  - port: prometheus
+    scheme: http
+    path: /metrics/detailed
+    params:
+      family:
+        - queue_coarse_metrics
+        - queue_metrics
+    interval: 15s
+    scrapeTimeout: 14s
+
