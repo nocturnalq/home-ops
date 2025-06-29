@@ -1,0 +1,11 @@
+apiVersion: v2
+name: rabbitmq
+description: Managed RabbitMQ service
+
+type: application
+
+# Helm Chart version
+version: 0.1.0
+
+# RabbitMQ version
+appVersion: "1.16.0"
