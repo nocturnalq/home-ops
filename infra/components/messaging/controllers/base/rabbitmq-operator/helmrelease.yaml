@@ -9,10 +9,9 @@ spec:
     spec:
       chart: bitnami/rabbitmq-cluster-operator
       sourceRef:
-        kind: HelmRepository
+        kind: OCIRepository
         name: rabbitmq-operator
         namespace: ops
-      version: 4.4.23
   timeout: 10m
   install:
     remediation:
@@ -25,5 +24,3 @@ spec:
     ignore:
       - paths: ["/spec/replicas"]
   values:
-    config:
-      clusterWide: true

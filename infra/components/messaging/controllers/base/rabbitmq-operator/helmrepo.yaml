@@ -1,8 +1,13 @@
 apiVersion: source.toolkit.fluxcd.io/v1beta2
-kind: HelmRepository
+kind: OCIRepository
 metadata:
   name: rabbitmq-operator
   namespace: ops
 spec:
   interval: 10h
-  url: https://charts.bitnami.com/bitnami
+  layerSelector:
+    mediaType: "application/vnd.cncf.helm.chart.content.v1.tar+gzip"
+    operation: copy
+  url: oci://registry-1.docker.io/bitnamicharts/rabbitmq-cluster-operator
+  ref:
+    semver: ">= 4.4.23"
