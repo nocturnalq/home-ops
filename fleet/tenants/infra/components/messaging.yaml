@@ -2,7 +2,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: brokers-controllers
+  name: messaging-controllers
 spec:
   serviceAccountName: flux-infra
   interval: 10m
@@ -13,4 +13,4 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-infra
-  path: infra/components/brokers/controllers/${ENVIRONMENT}
+  path: infra/components/messaging/controllers/${ENVIRONMENT}
