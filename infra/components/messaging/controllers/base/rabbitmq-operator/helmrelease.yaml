@@ -7,8 +7,7 @@ spec:
   interval: 10m
   chart:
     spec:
-      chart: bitnami/rabbitmq-cluster-operator
-      sourceRef:
+      chartRef:
         kind: OCIRepository
         name: rabbitmq-operator
         namespace: ops
