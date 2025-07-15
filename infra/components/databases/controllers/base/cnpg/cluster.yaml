@@ -1,8 +1,8 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
-namespace: testing
 metadata:
   name: test-cluster
+  namespace: testing
 spec:
   instances: 2
 
