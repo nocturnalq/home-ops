@@ -22,6 +22,6 @@ spec:
        metadata: 
          name: ${schema.spec.name}
        spec:
-         instances: ${schema.spec.name}
+         instances: ${schema.spec.replicas}
          storage:
            size: ${schema.spec.size}Gi
