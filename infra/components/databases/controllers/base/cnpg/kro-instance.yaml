@@ -1,0 +1,7 @@
+apiVersion: kro.run/v1alpha1
+kind: PostgreSQL
+metadata: 
+  name: kro-postgresql-instance
+spec:
+  name: kro-postgresql-cluster
+  size: 10

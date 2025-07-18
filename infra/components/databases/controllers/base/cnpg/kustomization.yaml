@@ -4,3 +4,4 @@ resources:
   - helmrepo.yaml
   - helmrelease.yaml
   - cluster.yaml
+  - kro-instance.yaml
