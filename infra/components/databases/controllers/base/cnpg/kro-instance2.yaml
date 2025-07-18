@@ -1,0 +1,9 @@
+apiVersion: kro.run/v1alpha1
+kind: PostgreSQL
+metadata:
+  namespace: testing
+  name: kro-postgresql-cluster
+spec:
+  name: kro-postgresql-cluster2
+  size: 10
+  replicas: 1
