@@ -11,7 +11,7 @@ spec:
     spec:
     # Fields that you can configure 
       name: string | required=true description="Postgresql Instance name"
-      size: string | enum="5,10,15,20,25,30,35,40,45,50" default="5"
+      size: integer | enum="5,10,15,20,25,30,35,40,45,50" default="5"
       replicas: integer | default=2 minimum=1 maximum=2
 
   resources:
