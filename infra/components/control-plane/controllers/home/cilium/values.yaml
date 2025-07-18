@@ -4,9 +4,9 @@ metadata:
   name: cilium
   namespace: kube-system
 spec:
-  interval: 10m
+  interval: 1h
   chartRef:
-    kind: OCIRepository
+    kind: HelmChart
     name: cilium
     namespace: kube-system
   timeout: 10m
