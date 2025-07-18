@@ -9,7 +9,6 @@ spec:
     spec:
       chart: cilium
       version: '1.17.5'
-      namespace: kube-system
       sourceRef:
         kind: HelmRepository
         name: cilium
