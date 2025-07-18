@@ -4,12 +4,17 @@ metadata:
   name: cilium
   namespace: kube-system
 spec:
-  interval: 1h
-  chartRef:
-    kind: HelmChart
-    name: cilium
-    namespace: kube-system
-  timeout: 10m
+  interval: 10m
+  chart:
+    spec:
+      chart: cilium
+      version: '0.17.5'
+      namespace: kube-system
+      sourceRef:
+        kind: HelmRepository
+        name: cilium
+        namespace: kube-system
+      interval: 10m
   install:
     remediation:
       retries: 3
