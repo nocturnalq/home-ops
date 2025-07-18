@@ -1,0 +1,25 @@
+apiVersion: kro.run/v1alpha1
+kind: ResourceGraphDefinition
+metadata:
+  name: postgresql.kro.run
+spec:
+  schema:
+    apiVersion: v1alpha1
+    kind: PostgreSQL
+    spec:
+    # Fields that you can configure 
+      name: string | required=true description="Postgresql Instance name"
+      size: string | enum="5,10,15,20,25,30,35,40,45,50" default="5"
+      replicas: integer | default=2 minimum=1 maximum=2
+
+  resources:
+    - id: cluster
+      template:
+       apiVersion: postgresql.cnpg.io/v1
+       kind: Cluster
+       metadata: 
+         name: ${schema.spec.name}
+       spec:
+         instances: ${schema.spec.name}
+         storage:
+           size: ${schema.spec.size}Gi
